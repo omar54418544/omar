@@ -3,66 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>عمر فتحي | مصمم ومطور مواقع</title>
-    <meta name="description" content="موقع عمر فتحي الشخصي لعرض أعماله في تصميم وتطوير المواقع، تصميمات السوشيال ميديا، وتحسين محركات البحث (SEO).">
-    <meta name="keywords" content="Omar Fathy, عمر فتحي, تصميم مواقع, SEO, Social Media, مطور واجهات أمامية">
+    <title>عمر فتحي | خدمات رقمية متكاملة</title>
+    <meta name="description" content="نقدم مجموعة شاملة من الخدمات الرقمية لتطوير حضورك أونلاين، من إدارة حسابات التواصل الاجتماعي إلى تصميم وتطوير المواقع.">
+    <meta name="keywords" content="خدمات رقمية, تسويق الكتروني, إدارة حسابات, توثيق حسابات, تصميم مواقع, SEO, عمر فتحي">
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Font Awesome (for icons) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" xintegrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
     <!-- AOS (Animate On Scroll) Library -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
-    <!-- Google Fonts (Cairo for Arabic) -->
+    <!-- Google Fonts (Cairo) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
     
     <style>
-        /* Apply Cairo font to the body */
         body {
             font-family: 'Cairo', sans-serif;
-            background-color: #111827; /* Dark background */
-            color: #E5E7EB; /* Light text */
+            background-color: #111827;
+            color: #E5E7EB;
         }
-        /* Custom styles for active nav link */
         .nav-link.active {
-            color: #38bdf8; /* sky-500 */
+            color: #38bdf8;
             font-weight: 700;
         }
-        /* Glassmorphism effect for cards */
         .glass-card {
             background: rgba(31, 41, 55, 0.5);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
+            height: 100%;
         }
-        /* Gradient text effect */
         .text-gradient {
             background: linear-gradient(90deg, #38bdf8, #a78bfa);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        /* Scroll to top button */
         #scrollToTopBtn {
             position: fixed;
             bottom: 20px;
-            right: 20px;
             display: none;
             z-index: 100;
         }
-        /* Typed.js cursor color */
-        .typed-cursor {
-            color: #38bdf8;
-            font-weight: 600;
+        html[dir="rtl"] #scrollToTopBtn { left: 20px; right: auto; }
+        html[dir="ltr"] #scrollToTopBtn { right: 20px; left: auto; }
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
         }
-        /* Code snippet font */
-        #code-snippet-container {
-            font-family: 'Fira Code', 'Courier New', Courier, monospace;
-            direction: ltr; /* Ensure code block is LTR */
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+        .page-container {
+            transition: opacity 0.3s ease-in-out;
+        }
+        .page-hidden {
+            display: none !important;
+        }
+        .fade-out {
+            opacity: 0;
+        }
+        .fade-in {
+            opacity: 1;
+        }
+        .timeline-line {
+            position: absolute;
+            top: 2.5rem;
+            bottom: 0;
+            width: 4px;
+            background-color: #374151;
+        }
+        html[dir="rtl"] .timeline-line { right: calc(1.25rem - 2px); }
+        html[dir="ltr"] .timeline-line { left: calc(1.25rem - 2px); }
+        .timeline-point {
+            position: absolute;
+            top: 2.5rem;
+            width: 1.25rem;
+            height: 1.25rem;
+            border-radius: 9999px;
+            border-width: 4px;
+            border-color: #374151;
+            background-color: #111827;
+        }
+        html[dir="rtl"] .timeline-point { right: 0; }
+        html[dir="ltr"] .timeline-point { left: 0; }
+        .service-page {
+            padding-top: 80px; /* To avoid content being hidden by fixed header */
         }
     </style>
 </head>
@@ -71,334 +106,473 @@
     <!-- Header & Navigation -->
     <header id="header" class="bg-gray-900/70 backdrop-blur-lg fixed top-0 left-0 w-full z-50 transition-all duration-300 shadow-lg">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#hero" class="text-2xl font-bold text-gradient">عمر فتحي</a>
-            
-            <!-- Desktop Menu -->
-            <div class="hidden md:flex space-x-8 space-x-reverse items-center">
-                <a href="#hero" class="nav-link hover:text-sky-400 transition-colors duration-300">الرئيسية</a>
-                <a href="#about" class="nav-link hover:text-sky-400 transition-colors duration-300">عني</a>
-                <a href="#services" class="nav-link hover:text-sky-400 transition-colors duration-300">خدماتي</a>
-                <a href="#portfolio" class="nav-link hover:text-sky-400 transition-colors duration-300">أعمالي</a>
-                <a href="#contact" class="bg-sky-500 hover:bg-sky-600 text-white font-bold py-2 px-4 rounded-lg transition-all duration-300 transform hover:scale-105">تواصل معي</a>
+            <a href="#hero" onclick="showMainPage('hero')" class="cursor-pointer text-2xl font-bold text-gradient" data-translate="brandName">عمر فتحي</a>
+            <div class="hidden lg:flex items-center">
+                <div id="desktop-nav-links" class="flex space-x-6 space-x-reverse">
+                    <a href="#hero" onclick="showMainPage('hero')" class="nav-link hover:text-sky-400" data-translate="navHome">الرئيسية</a>
+                    <a href="#services" onclick="showMainPage('services')" class="nav-link hover:text-sky-400" data-translate="navServices">خدماتنا</a>
+                    <a href="#why-us" onclick="showMainPage('why-us')" class="nav-link hover:text-sky-400" data-translate="navWhyUs">لماذا نحن؟</a>
+                    <a href="#portfolio" onclick="showMainPage('portfolio')" class="nav-link hover:text-sky-400" data-translate="navPortfolio">أعمالنا</a>
+                    <a href="#about" onclick="showMainPage('about')" class="nav-link hover:text-sky-400" data-translate="navAbout">من نحن</a>
+                    <a href="#contact" onclick="showMainPage('contact')" class="bg-sky-500 hover:bg-sky-600 text-white font-bold py-2 px-4 rounded-lg" data-translate="navContact">تواصل معنا</a>
+                </div>
+                <button id="lang-toggle" class="mx-4 text-gray-300 hover:text-sky-400 font-semibold focus:outline-none"></button>
             </div>
-
-            <!-- Mobile Menu Button -->
-            <div class="md:hidden">
-                <button id="mobile-menu-button" class="text-gray-200 focus:outline-none">
-                     <i class="fas fa-bars fa-lg"></i>
-                </button>
+            <div class="lg:hidden flex items-center">
+                 <button id="lang-toggle-mobile" class="mx-4 text-gray-300 hover:text-sky-400 font-semibold focus:outline-none"></button>
+                <button id="mobile-menu-button" class="text-gray-200 focus:outline-none"><i class="ph ph-list text-2xl"></i></button>
             </div>
         </nav>
-        
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-gray-800">
-            <a href="#hero" class="block text-center py-3 px-4 text-sm hover:bg-gray-700 transition-colors duration-200">الرئيسية</a>
-            <a href="#about" class="block text-center py-3 px-4 text-sm hover:bg-gray-700 transition-colors duration-200">عني</a>
-            <a href="#services" class="block text-center py-3 px-4 text-sm hover:bg-gray-700 transition-colors duration-200">خدماتي</a>
-            <a href="#portfolio" class="block text-center py-3 px-4 text-sm hover:bg-gray-700 transition-colors duration-200">أعمالي</a>
-            <a href="#contact" class="block text-center py-3 px-4 text-sm hover:bg-gray-700 transition-colors duration-200">تواصل معي</a>
+        <div id="mobile-menu" class="hidden lg:hidden bg-gray-800">
+            <a href="#hero" onclick="showMainPage('hero'); closeMobileMenu();" class="block text-center py-3 px-4 text-sm hover:bg-gray-700" data-translate="navHome">الرئيسية</a>
+            <a href="#services" onclick="showMainPage('services'); closeMobileMenu();" class="block text-center py-3 px-4 text-sm hover:bg-gray-700" data-translate="navServices">خدماتنا</a>
+            <a href="#portfolio" onclick="showMainPage('portfolio'); closeMobileMenu();" class="block text-center py-3 px-4 text-sm hover:bg-gray-700" data-translate="navPortfolio">أعمالنا</a>
+            <a href="#about" onclick="showMainPage('about'); closeMobileMenu();" class="block text-center py-3 px-4 text-sm hover:bg-gray-700" data-translate="navAbout">من نحن</a>
+            <a href="#contact" onclick="showMainPage('contact'); closeMobileMenu();" class="block text-center py-3 px-4 text-sm hover:bg-gray-700" data-translate="navContact">تواصل معنا</a>
         </div>
     </header>
 
-    <main>
-        <!-- Hero Section -->
-        <section id="hero" class="min-h-screen flex items-center bg-cover bg-center" style="background-image: linear-gradient(rgba(17, 24, 39, 0.8), rgba(17, 24, 39, 1)), url('https://placehold.co/1920x1080/1a202c/ffffff?text=Code');">
-            <div class="container mx-auto px-6 text-center">
-                <h1 class="text-4xl md:text-6xl font-bold text-white mb-4 leading-tight" data-aos="fade-down">أهلاً بك، أنا <span class="text-gradient">عمر فتحي</span></h1>
-                <p class="text-lg md:text-2xl text-sky-400 font-semibold mb-8 h-12 md:h-auto" data-aos="fade-up" data-aos-delay="200">
-                    <span id="typed-text"></span>
-                </p>
-                <a href="#portfolio" class="bg-sky-500 hover:bg-sky-600 text-white font-bold py-3 px-8 rounded-lg transition-all duration-300 text-lg transform hover:scale-105" data-aos="zoom-in" data-aos-delay="400">شاهد أعمالي</a>
-            </div>
-        </section>
+    <div id="main-content" class="page-container">
+        <main>
+            <!-- Hero Section -->
+            <section id="hero" class="relative min-h-screen flex items-center justify-center text-center overflow-hidden">
+                <div id="particles-js"></div>
+                <div class="hero-content container mx-auto px-6">
+                    <h1 class="text-4xl md:text-6xl font-bold text-white mb-4 leading-tight" data-aos="fade-down" data-translate="heroTitle">🚀 خدماتنا الرقمية المتكاملة لتطوير حضورك أونلاين</h1>
+                    <p class="text-lg md:text-2xl text-gray-300 font-semibold mb-8 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="200" data-translate="heroSubtitle">
+                        نحن هنا لنأخذ علامتك التجارية إلى مستوى جديد! نقدم لك مجموعة شاملة من الخدمات الرقمية المصممة خصيصًا لتناسب أهدافك، وتحقق لك الانتشار، الاحترافية، والتأثير الحقيقي على جمهورك.
+                    </p>
+                    <a href="#services" class="bg-sky-500 hover:bg-sky-600 text-white font-bold py-3 px-8 rounded-lg transition-all duration-300 text-lg transform hover:scale-105" data-aos="zoom-in" data-aos-delay="400" data-translate="heroButton">اكتشف خدماتنا</a>
+                </div>
+            </section>
 
-        <!-- About Me Section -->
-        <section id="about" class="py-20 overflow-hidden">
-            <div class="container mx-auto px-6">
-                <h2 class="text-3xl font-bold text-center mb-2 text-sky-400" data-aos="fade-up">من أنا؟</h2>
-                <div class="w-24 h-1 bg-sky-500 mx-auto mb-12" data-aos="fade-up" data-aos-delay="100"></div>
-                <div class="flex flex-col md:flex-row items-center gap-12">
-                    <div class="md:w-1/3 text-center" data-aos="fade-left">
-                        <img src="omar.jpg" alt="صورة عمر فتحي الشخصية" class="rounded-full shadow-2xl mx-auto border-4 border-gray-700 w-64 h-64 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/400x400/3b82f6/ffffff?text=Omar';">
-                    </div>
-                    <div class="md:w-2/3 text-lg text-gray-300 leading-relaxed" data-aos="fade-right">
-                        <p>
-                            مرحباً! أنا عمر فتحي، شغوف بتحويل الأفكار إلى واقع رقمي ملموس. أجمع بين المهارات التقنية في تطوير المواقع باستخدام <span class="font-bold text-sky-400">HTML, CSS, JavaScript</span>، والإبداع في تصميمات السوشيال ميديا باستخدام <span class="font-bold text-sky-400">Canva و Photoshop</span>.
-                        </p>
-                        <p class="mt-4">
-                            هدفي هو إنشاء تجارب مستخدم فريدة ومواقع متجاوبة لا تبدو رائعة فحسب، بل تعمل بكفاءة عالية وتصل إلى الجمهور المستهدف من خلال تطبيق أفضل ممارسات <span class="font-bold text-sky-400">تحسين محركات البحث (SEO)</span>. أسعى دائمًا لتقديم حلول مبتكرة تلبي احتياجات عملائي وتساعدهم على تحقيق أهدافهم.
-                        </p>
+            <!-- Services Section -->
+            <section id="services" class="py-20 overflow-hidden">
+                <div class="container mx-auto px-6">
+                    <h2 class="text-3xl md:text-4xl font-bold text-center mb-2 text-sky-400" data-aos="fade-up" data-translate="servicesTitle">🧰 أقسام الخدمات</h2>
+                    <div class="w-24 h-1 bg-sky-500 mx-auto mb-12" data-aos="fade-up" data-aos-delay="100"></div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <div class="glass-card p-8 rounded-xl flex flex-col text-center cursor-pointer transition-all duration-300 hover:transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-sky-500/20" data-aos="fade-up" data-aos-delay="200" onclick="showPage('page-service1')"><div class="bg-sky-500/20 text-sky-400 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6 flex-shrink-0"><i class="ph ph-share-network text-4xl"></i></div><h3 class="text-2xl font-bold mb-4 text-white" data-translate="service1Title">إدارة حسابات التواصل الاجتماعي</h3><p class="text-gray-400" data-translate="service1Desc">ننشئ خطة محتوى جذابة، تصميمات إبداعية، وجدولة منظمة للنشر، مع تفاعل حقيقي لزيادة الوعي والمبيعات.</p></div>
+                        <div class="glass-card p-8 rounded-xl flex flex-col text-center cursor-pointer transition-all duration-300 hover:transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-sky-500/20" data-aos="fade-up" data-aos-delay="300" onclick="showPage('page-service2')"><div class="bg-sky-500/20 text-sky-400 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6 flex-shrink-0"><i class="ph-fill ph-seal-check text-4xl"></i></div><h3 class="text-2xl font-bold mb-4 text-white" data-translate="service2Title">توثيق الحسابات (العلامة الزرقاء)</h3><p class="text-gray-400" data-translate="service2Desc">نساعدك في توثيق حساباتك على فيسبوك، إنستجرام، وتيك توك بخطوات احترافية وآمنة.</p></div>
+                        <div class="glass-card p-8 rounded-xl flex flex-col text-center cursor-pointer transition-all duration-300 hover:transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-sky-500/20" data-aos="fade-up" data-aos-delay="400" onclick="showPage('page-service3')"><div class="bg-sky-500/20 text-sky-400 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6 flex-shrink-0"><i class="ph ph-video-camera text-4xl"></i></div><h3 class="text-2xl font-bold mb-4 text-white" data-translate="service3Title">إنتاج الفيديوهات والبودكاست</h3><p class="text-gray-400" data-translate="service3Desc">نحوّل أفكارك لمحتوى بصري أو صوتي احترافي: سكريبت، تصوير، مونتاج، ونشر.</p></div>
+                        <div class="glass-card p-8 rounded-xl flex flex-col text-center cursor-pointer transition-all duration-300 hover:transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-sky-500/20" data-aos="fade-up" data-aos-delay="200" onclick="showPage('page-service4')"><div class="bg-sky-500/20 text-sky-400 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6 flex-shrink-0"><i class="ph ph-users-three text-4xl"></i></div><h3 class="text-2xl font-bold mb-4 text-white" data-translate="service4Title">إدارة المؤثرين</h3><p class="text-gray-400" data-translate="service4Desc">نوصل علامتك التجارية بالمؤثرين المناسبين وننفذ الحملة بشكل احترافي ومدروس.</p></div>
+                        <div class="glass-card p-8 rounded-xl flex flex-col text-center cursor-pointer transition-all duration-300 hover:transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-sky-500/20" data-aos="fade-up" data-aos-delay="300" onclick="showPage('page-service5')"><div class="bg-sky-500/20 text-sky-400 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6 flex-shrink-0"><i class="ph ph-shield-check text-4xl"></i></div><h3 class="text-2xl font-bold mb-4 text-white" data-translate="service5Title">حماية المحتوى</h3><p class="text-gray-400" data-translate="service5Desc">نراقب ونحمي محتواك من السرقة أو الاستخدام غير القانوني ونتعامل مع الانتهاكات بفعالية.</p></div>
+                        <div class="glass-card p-8 rounded-xl flex flex-col text-center cursor-pointer transition-all duration-300 hover:transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-sky-500/20" data-aos="fade-up" data-aos-delay="400" onclick="showPage('page-service6')"><div class="bg-sky-500/20 text-sky-400 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6 flex-shrink-0"><i class="ph ph-megaphone text-4xl"></i></div><h3 class="text-2xl font-bold mb-4 text-white" data-translate="service6Title">الإعلانات الرقمية الممولة</h3><p class="text-gray-400" data-translate="service6Desc">نُطلق حملات إعلانية قوية على فيسبوك، إنستجرام، وجوجل للوصول للجمهور المستهدف.</p></div>
+                        <div class="glass-card p-8 rounded-xl flex flex-col text-center cursor-pointer transition-all duration-300 hover:transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-sky-500/20" data-aos="fade-up" data-aos-delay="200" onclick="showPage('page-service7')"><div class="bg-sky-500/20 text-sky-400 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6 flex-shrink-0"><i class="ph ph-code text-4xl"></i></div><h3 class="text-2xl font-bold mb-4 text-white" data-translate="service7Title">تصميم وتطوير المواقع</h3><p class="text-gray-400" data-translate="service7Desc">نصمّم موقعًا سريعًا، آمنًا، ومتجاوبًا مع كل الأجهزة، وبتجربة مستخدم رائعة.</p></div>
+                        <div class="glass-card p-8 rounded-xl flex flex-col text-center cursor-pointer transition-all duration-300 hover:transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-sky-500/20" data-aos="fade-up" data-aos-delay="300" onclick="showPage('page-service8')"><div class="bg-sky-500/20 text-sky-400 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6 flex-shrink-0"><i class="ph ph-chart-line-up text-4xl"></i></div><h3 class="text-2xl font-bold mb-4 text-white" data-translate="service8Title">تحسين محركات البحث (SEO)</h3><p class="text-gray-400" data-translate="service8Desc">نُظهر موقعك في النتائج الأولى على جوجل عبر تحسين المحتوى، السرعة، والبنية التقنية.</p></div>
+                        <div class="glass-card p-8 rounded-xl flex flex-col text-center cursor-pointer transition-all duration-300 hover:transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-sky-500/20" data-aos="fade-up" data-aos-delay="400" onclick="showPage('page-service9')"><div class="bg-sky-500/20 text-sky-400 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6 flex-shrink-0"><i class="ph ph-gear-six text-4xl"></i></div><h3 class="text-2xl font-bold mb-4 text-white" data-translate="service9Title">إدارة المواقع</h3><p class="text-gray-400" data-translate="service9Desc">نهتم بكل ما يخص موقعك: التحديثات، النسخ الاحتياطي، الأمان، وتحسين الأداء بشكل دوري.</p></div>
                     </div>
                 </div>
-            </div>
-        </section>
-
-        <!-- Services Section -->
-        <section id="services" class="py-20 bg-gray-900/50 overflow-hidden">
-            <div class="container mx-auto px-6">
-                <h2 class="text-3xl font-bold text-center mb-2 text-sky-400" data-aos="fade-up">خدماتي</h2>
-                <div class="w-24 h-1 bg-sky-500 mx-auto mb-12" data-aos="fade-up" data-aos-delay="100"></div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Service Card 1 -->
-                    <div class="glass-card p-8 rounded-xl text-center transition-all duration-300 hover:transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-sky-500/20" data-aos="fade-up" data-aos-delay="200">
-                        <div class="bg-sky-500/20 text-sky-400 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6">
-                            <i class="fa-solid fa-code fa-2x"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold mb-4 text-white">تصميم مواقع متجاوبة</h3>
-                        <p class="text-gray-400">بناء مواقع إلكترونية عصرية وسريعة تعمل بكفاءة على جميع الأجهزة والشاشات.</p>
-                    </div>
-                    <!-- Service Card 2 -->
-                    <div class="glass-card p-8 rounded-xl text-center transition-all duration-300 hover:transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-sky-500/20" data-aos="fade-up" data-aos-delay="300">
-                        <div class="bg-sky-500/20 text-sky-400 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6">
-                           <i class="fa-solid fa-palette fa-2x"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold mb-4 text-white">تصميمات سوشيال ميديا</h3>
-                        <p class="text-gray-400">تصميمات إبداعية وجذابة لمنصات التواصل الاجتماعي باستخدام Canva و Photoshop.</p>
-                    </div>
-                    <!-- Service Card 3 -->
-                    <div class="glass-card p-8 rounded-xl text-center transition-all duration-300 hover:transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-sky-500/20" data-aos="fade-up" data-aos-delay="400">
-                        <div class="bg-sky-500/20 text-sky-400 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6">
-                            <i class="fa-solid fa-chart-line fa-2x"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold mb-4 text-white">تحسين محركات البحث (SEO)</h3>
-                        <p class="text-gray-400">تحسين بنية ومحتوى موقعك لضمان ظهوره في صدارة نتائج البحث وزيادة الزوار.</p>
+            </section>
+            
+            <section id="why-us" class="py-20 bg-gray-900/50 overflow-hidden">
+                <div class="container mx-auto px-6">
+                    <h2 class="text-3xl md:text-4xl font-bold text-center mb-2 text-sky-400" data-aos="fade-up" data-translate="whyUsTitle">لماذا تختارنا؟</h2>
+                    <div class="w-24 h-1 bg-sky-500 mx-auto mb-12" data-aos="fade-up" data-aos-delay="100"></div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div class="text-center p-6" data-aos="fade-up" data-aos-delay="200"><div class="text-sky-400 text-5xl mb-4"><i class="ph ph-puzzle-piece mx-auto"></i></div><h3 class="text-2xl font-bold mb-2 text-white" data-translate="whyUs1Title">حلول متكاملة</h3><p class="text-gray-400" data-translate="whyUs1Desc">نقدم كل ما تحتاجه علامتك التجارية للنجاح الرقمي في مكان واحد.</p></div>
+                        <div class="text-center p-6" data-aos="fade-up" data-aos-delay="300"><div class="text-sky-400 text-5xl mb-4"><i class="ph ph-users mx-auto"></i></div><h3 class="text-2xl font-bold mb-2 text-white" data-translate="whyUs2Title">فريق من الخبراء</h3><p class="text-gray-400" data-translate="whyUs2Desc">فريقنا يمتلك الخبرة والإبداع لتحقيق أهدافك بكفاءة عالية.</p></div>
+                        <div class="text-center p-6" data-aos="fade-up" data-aos-delay="400"><div class="text-sky-400 text-5xl mb-4"><i class="ph ph-crosshair mx-auto"></i></div><h3 class="text-2xl font-bold mb-2 text-white" data-translate="whyUs3Title">نتائج مضمونة</h3><p class="text-gray-400" data-translate="whyUs3Desc">نركز على تحقيق نتائج ملموسة تساهم في نمو عملك.</p></div>
                     </div>
                 </div>
-            </div>
-        </section>
-
-        <!-- Code Philosophy Section -->
-        <section id="code-philosophy" class="py-20 bg-gray-800/50 overflow-hidden">
-            <div class="container mx-auto px-6">
-                <h2 class="text-3xl font-bold text-center mb-2 text-sky-400" data-aos="fade-up">فلسفتي في البرمجة</h2>
-                <p class="text-center text-gray-400 mb-12 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">"الكود الجيد هو أفضل توثيق. أحول الأفكار المعقدة إلى حلول بسيطة وأنيقة."</p>
-                <div class="max-w-4xl mx-auto bg-gray-900 rounded-lg shadow-2xl border border-gray-700" data-aos="zoom-in-up" data-aos-delay="200">
-                    <!-- Code Editor Header -->
-                    <div class="bg-gray-700 p-3 flex items-center rounded-t-lg">
-                        <div class="w-3 h-3 bg-red-500 rounded-full mr-2"></div>
-                        <div class="w-3 h-3 bg-yellow-500 rounded-full mr-2"></div>
-                        <div class="w-3 h-3 bg-green-500 rounded-full"></div>
-                        <span class="mr-auto text-sm text-gray-400 font-mono">/omar-fathy/main.js</span>
-                    </div>
-                    <!-- Code Block -->
-                    <div id="code-snippet-container" class="p-6 text-left">
-                        <pre><code id="code-snippet" class="language-javascript"></code></pre>
+            </section>
+            
+            <section id="portfolio" class="py-20 overflow-hidden">
+                 <div class="container mx-auto px-6">
+                    <h2 class="text-3xl md:text-4xl font-bold text-center mb-2 text-sky-400" data-aos="fade-up" data-translate="portfolioTitle">أعمالنا</h2>
+                    <div class="w-24 h-1 bg-sky-500 mx-auto mb-12" data-aos="fade-up" data-aos-delay="100"></div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <div class="group relative overflow-hidden rounded-lg shadow-lg" data-aos="zoom-in" data-aos-delay="200"><img src="drillmax.png" alt="Drill Max Project" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" onerror="this.onerror=null;this.src='https://placehold.co/600x400/111827/38bdf8?text=Drill+Max';"><div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-70 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500"><h3 class="text-white text-2xl font-bold transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">Drill Max</h3><a href="https://drilmax.com" target="_blank" rel="noopener noreferrer" class="mt-4 bg-sky-500 text-white py-2 px-5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100 transform hover:scale-110" data-translate="viewProject">عرض المشروع</a></div></div>
+                        <div class="group relative overflow-hidden rounded-lg shadow-lg" data-aos="zoom-in" data-aos-delay="300"><img src="shatabli.png" alt="Shatabli Project" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" onerror="this.onerror=null;this.src='https://placehold.co/600x400/111827/38bdf8?text=Shatabli';"><div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-70 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500"><h3 class="text-white text-2xl font-bold transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">Shatabli</h3><a href="https://shattabli.vercel.app" target="_blank" rel="noopener noreferrer" class="mt-4 bg-sky-500 text-white py-2 px-5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100 transform hover:scale-110" data-translate="viewProject">عرض المشروع</a></div></div>
+                        <div class="group relative overflow-hidden rounded-lg shadow-lg border-2 border-dashed border-gray-600 flex items-center justify-center" data-aos="zoom-in" data-aos-delay="400"><div class="text-center text-gray-500"><i class="ph ph-plus text-5xl"></i><p class="mt-2 font-semibold" data-translate="addProject">إضافة مشروع جديد</p></div></div>
                     </div>
                 </div>
-            </div>
-        </section>
-
-        <!-- Portfolio Section -->
-        <section id="portfolio" class="py-20 overflow-hidden">
-            <div class="container mx-auto px-6">
-                <h2 class="text-3xl font-bold text-center mb-2 text-sky-400" data-aos="fade-up">أعمالي</h2>
-                <div class="w-24 h-1 bg-sky-500 mx-auto mb-12" data-aos="fade-up" data-aos-delay="100"></div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Portfolio Item 1 -->
-                    <a href="https://drilmax.com" target="_blank" rel="noopener noreferrer" class="group block relative overflow-hidden rounded-lg shadow-lg" data-aos="zoom-in" data-aos-delay="200">
-                        <img src="drillmax.png" alt="صورة مشروع Drill Max" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" onerror="this.onerror=null;this.src='https://placehold.co/600x400/111827/38bdf8?text=Drill+Max';">
-                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-70 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500">
-                            <div class="text-center">
-                                <h3 class="text-white text-2xl font-bold transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">Drill Max</h3>
-                                <p class="text-sky-300 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">عرض المشروع</p>
-                            </div>
-                        </div>
-                    </a>
-                    <!-- Portfolio Item 2 -->
-                    <a href="https://shattabli.vercel.app" target="_blank" rel="noopener noreferrer" class="group block relative overflow-hidden rounded-lg shadow-lg" data-aos="zoom-in" data-aos-delay="300">
-                        <img src="shatabli.png" alt="صورة مشروع Shatabli" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" onerror="this.onerror=null;this.src='https://placehold.co/600x400/111827/38bdf8?text=Shatabli';">
-                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-70 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500">
-                             <div class="text-center">
-                                <h3 class="text-white text-2xl font-bold transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">Shatabli</h3>
-                                <p class="text-sky-300 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">عرض المشروع</p>
-                            </div>
-                        </div>
-                    </a>
-                    <!-- Portfolio Item 3 (Placeholder) -->
-                    <div class="group relative overflow-hidden rounded-lg shadow-lg border-2 border-dashed border-gray-600 flex items-center justify-center" data-aos="zoom-in" data-aos-delay="400">
-                        <div class="text-center text-gray-500">
-                            <i class="fa-solid fa-plus fa-3x"></i>
-                            <p class="mt-2 font-semibold">أضف مشروع جديد</p>
+            </section>
+            
+            <section id="process" class="py-20 bg-gray-900/50 overflow-hidden">
+                <div class="container mx-auto px-6">
+                    <h2 class="text-3xl md:text-4xl font-bold text-center mb-2 text-sky-400" data-aos="fade-up" data-translate="processTitle">آلية عملنا</h2>
+                    <div class="w-24 h-1 bg-sky-500 mx-auto mb-12" data-aos="fade-up" data-aos-delay="100"></div>
+                    <div class="max-w-3xl mx-auto">
+                        <div class="relative">
+                            <div class="timeline-line"></div>
+                            <div class="relative mb-12" data-aos="fade-up"><div class="timeline-point"></div><div class="timeline-content mx-8"><h3 class="text-2xl font-bold text-sky-400" data-translate="process1Title">01. الاكتشاف والاستراتيجية</h3><p class="text-gray-400 mt-2" data-translate="process1Desc">نبدأ بفهم أهدافك وجمهورك لوضع خطة عمل واضحة وفعالة.</p></div></div>
+                            <div class="relative mb-12" data-aos="fade-up"><div class="timeline-point"></div><div class="timeline-content mx-8"><h3 class="text-2xl font-bold text-sky-400" data-translate="process2Title">02. التصميم والتطوير</h3><p class="text-gray-400 mt-2" data-translate="process2Desc">يقوم فريقنا بتصميم وتنفيذ الحلول الرقمية بناءً على الاستراتيجية المتفق عليها.</p></div></div>
+                            <div class="relative mb-12" data-aos="fade-up"><div class="timeline-point"></div><div class="timeline-content mx-8"><h3 class="text-2xl font-bold text-sky-400" data-translate="process3Title">03. الإطلاق والتسويق</h3><p class="text-gray-400 mt-2" data-translate="process3Desc">نطلق مشروعك ونبدأ في تنفيذ الحملات التسويقية لضمان وصوله للجمهور.</p></div></div>
+                            <div class="relative" data-aos="fade-up"><div class="timeline-point"></div><div class="timeline-content mx-8"><h3 class="text-2xl font-bold text-sky-400" data-translate="process4Title">04. الدعم والنمو</h3><p class="text-gray-400 mt-2" data-translate="process4Desc">نقدم الدعم المستمر ونحلل النتائج لتحسين الأداء وتحقيق النمو المستدام.</p></div></div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="py-20 bg-gray-900/50 overflow-hidden">
-            <div class="container mx-auto px-6 text-center">
-                <h2 class="text-3xl font-bold mb-2 text-sky-400" data-aos="fade-up">لنتحدث!</h2>
-                <div class="w-24 h-1 bg-sky-500 mx-auto mb-8" data-aos="fade-up" data-aos-delay="100"></div>
-                <p class="text-lg text-gray-400 mb-8 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="200">هل لديك فكرة مشروع؟ أو ترغب في التعاون؟ لا تتردد في التواصل معي.</p>
-                
-                <div class="flex flex-col items-center space-y-4" data-aos="fade-up" data-aos-delay="300">
-                    <a href="mailto:of142020@gmail.com" class="inline-flex items-center justify-center bg-sky-500 hover:bg-sky-600 text-white font-bold py-3 px-8 rounded-lg transition-all duration-300 text-lg transform hover:scale-105">
-                        <i class="fa-solid fa-envelope ml-3"></i>
-                        of142020@gmail.com
-                    </a>
-                    <a href="tel:+201055550195" class="inline-flex items-center justify-center bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-8 rounded-lg transition-all duration-300 text-lg transform hover:scale-105">
-                        <i class="fa-solid fa-phone ml-3"></i>
-                        <span dir="ltr">010-5555-0195</span>
-                    </a>
+            </section>
+            
+            <section id="about" class="py-20 overflow-hidden">
+                 <div class="container mx-auto px-6">
+                    <h2 class="text-3xl md:text-4xl font-bold text-center mb-2 text-sky-400" data-aos="fade-up" data-translate="aboutTitle">من نحن؟</h2>
+                    <div class="w-24 h-1 bg-sky-500 mx-auto mb-12" data-aos="fade-up" data-aos-delay="100"></div>
+                    <div class="flex flex-col md:flex-row items-center gap-12">
+                        <div class="md:w-1/3 text-center" data-aos="fade-right"><img src="omar.jpg" alt="Omar Fathy's Picture" class="rounded-full shadow-2xl mx-auto border-4 border-gray-700 w-64 h-64 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/400x400/3b82f6/ffffff?text=Omar';"></div>
+                        <div class="md:w-2/3 text-lg text-gray-300 leading-relaxed" data-aos="fade-left">
+                            <p data-translate="aboutDesc1">أنا عمر فتحي، خبير رقمي متعدد المواهب شغوف بتحويل الأفكار إلى قصص نجاح. أجمع بين الخبرة التقنية في تطوير المواقع والتطبيقات، والإبداع في التصميم الجرافيكي، والاستراتيجية في التسويق الرقمي ونمو الحسابات على وسائل التواصل الاجتماعي.</p>
+                            <p class="mt-4" data-translate="aboutDesc2">هدفي هو تقديم حلول متكاملة تبدأ من الفكرة وتنتهي بالنجاح الملموس، مع التركيز على بناء علاقات قوية مع عملائي وتحقيق نتائج تفوق توقعاتهم.</p>
+                        </div>
+                    </div>
                 </div>
-
-                <div class="flex justify-center space-x-6 space-x-reverse mt-10" data-aos="zoom-in" data-aos-delay="400">
-                    <a href="https://www.facebook.com/omarr.fathy" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-sky-400 transition-all duration-300 transform hover:scale-125">
-                        <i class="fa-brands fa-facebook fa-2x"></i>
-                    </a>
-                    <a href="https://x.com/_usph" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-sky-400 transition-all duration-300 transform hover:scale-125">
-                        <i class="fa-brands fa-twitter fa-2x"></i>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-sky-400 transition-all duration-300 transform hover:scale-125">
-                        <i class="fa-brands fa-github fa-2x"></i>
-                    </a>
+            </section>
+            
+            <section id="contact" class="py-20 bg-gray-900/50 overflow-hidden">
+                <div class="container mx-auto px-6 text-center">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-2 text-sky-400" data-aos="fade-up" data-translate="contactTitle">لنتحدث!</h2>
+                    <div class="w-24 h-1 bg-sky-500 mx-auto mb-8" data-aos="fade-up" data-aos-delay="100"></div>
+                    <p class="text-lg text-gray-400 mb-8 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="200" data-translate="contactSubtitle">هل لديك فكرة مشروع؟ أو ترغب في التعاون؟ لا تتردد في التواصل معنا.</p>
+                    <div class="flex flex-col items-center space-y-4" data-aos="fade-up" data-aos-delay="300">
+                        <a href="mailto:of142020@gmail.com" class="inline-flex items-center justify-center bg-sky-500 hover:bg-sky-600 text-white font-bold py-3 px-8 rounded-lg transition-all duration-300 text-lg transform hover:scale-105"><i class="ph ph-envelope-simple icon-margin text-xl"></i>of142020@gmail.com</a>
+                        <a href="tel:+201055550195" class="inline-flex items-center justify-center bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-8 rounded-lg transition-all duration-300 text-lg transform hover:scale-105"><i class="ph ph-phone icon-margin text-xl"></i><span dir="ltr">010-5555-0195</span></a>
+                    </div>
+                    <div id="social-icons" class="flex justify-center space-x-6 space-x-reverse mt-10" data-aos="zoom-in" data-aos-delay="400">
+                        <a href="https://www.facebook.com/omarr.fathy" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-sky-400 transition-all duration-300 transform hover:scale-125"><i class="ph-fill ph-facebook-logo text-4xl"></i></a>
+                        <a href="https://x.com/_usph" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-sky-400 transition-all duration-300 transform hover:scale-125"><i class="ph-fill ph-x-logo text-4xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-sky-400 transition-all duration-300 transform hover:scale-125"><i class="ph-fill ph-github-logo text-4xl"></i></a>
+                    </div>
                 </div>
-            </div>
-        </section>
-    </main>
+            </section>
+        </main>
+    </div>
+
+    <!-- Service Pages Container -->
+    <div id="service-pages-container" class="page-container page-hidden fade-out">
+        <!-- Service pages will be injected here by JavaScript -->
+    </div>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 border-t border-gray-800">
+    <footer id="footer" class="bg-gray-900 border-t border-gray-800">
         <div class="container mx-auto px-6 py-6 text-center text-gray-500">
-            <p>&copy; 2024 عمر فتحي. جميع الحقوق محفوظة.</p>
+            <p data-translate="footerText">&copy; 2024 Omar Fathy. All Rights Reserved.</p>
         </div>
     </footer>
     
     <!-- Scroll to Top Button -->
-    <button id="scrollToTopBtn" onclick="scrollToTop()" class="bg-sky-500 hover:bg-sky-600 text-white font-bold w-12 h-12 rounded-full transition-all duration-300 shadow-lg">
-        <i class="fas fa-arrow-up"></i>
-    </button>
+    <button id="scrollToTopBtn" onclick="scrollToTop()" class="bg-sky-500 hover:bg-sky-600 text-white font-bold w-12 h-12 rounded-full transition-all duration-300 shadow-lg"><i class="ph ph-arrow-up text-2xl"></i></button>
 
+    <!-- Particles.js -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <!-- AOS (Animate On Scroll) Library -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    
-    <!-- Typed.js (for typing effect) -->
-    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
 
     <script>
-        // Initialize AOS
-        AOS.init({
-            duration: 800, // values from 0 to 3000, with step 50ms
-            once: false, // whether animation should happen only once - while scrolling down
-        });
+        // Full script is now self-contained and complete
+        const translations = {
+            brandName: { ar: "عمر فتحي", en: "Omar Fathy" },
+            navHome: { ar: "الرئيسية", en: "Home" },
+            navServices: { ar: "خدماتنا", en: "Services" },
+            navWhyUs: { ar: "لماذا نحن؟", en: "Why Us?" },
+            navPortfolio: { ar: "أعمالنا", en: "Portfolio" },
+            navAbout: { ar: "من نحن", en: "About Us" },
+            navContact: { ar: "تواصل معنا", en: "Contact Us" },
+            heroTitle: { ar: "🚀 خدماتنا الرقمية المتكاملة لتطوير حضورك أونلاين", en: "🚀 Our Integrated Digital Services to Enhance Your Online Presence" },
+            heroSubtitle: { ar: "نحن هنا لنأخذ علامتك التجارية إلى مستوى جديد! نقدم لك مجموعة شاملة من الخدمات الرقمية المصممة خصيصًا لتناسب أهدافك، وتحقق لك الانتشار، الاحترافية، والتأثير الحقيقي على جمهورك.", en: "We're here to take your brand to the next level! We offer a comprehensive suite of digital services designed to fit your goals, achieving reach, professionalism, and real impact on your audience." },
+            heroButton: { ar: "اكتشف خدماتنا", en: "Discover Our Services" },
+            servicesTitle: { ar: "🧰 أقسام الخدمات", en: "🧰 Service Departments" },
+            service1Title: { ar: "إدارة حسابات التواصل الاجتماعي", en: "Social Media Management" },
+            service1Desc: { ar: "ننشئ خطة محتوى جذابة، تصميمات إبداعية، وجدولة منظمة للنشر، مع تفاعل حقيقي لزيادة الوعي والمبيعات.", en: "We create engaging content plans, creative designs, and organized posting schedules, with real interaction to increase awareness and sales." },
+            service1DescDetail: { ar: "نقدم خدمة متكاملة لإدارة حساباتك على وسائل التواصل الاجتماعي، تشمل تحليل الجمهور، وضع استراتيجية محتوى، تصميم المنشورات، الرد على التعليقات والرسائل، وتقديم تقارير دورية لقياس الأداء.", en: "We offer a comprehensive service for managing your social media accounts, including audience analysis, content strategy development, post design, responding to comments and messages, and providing periodic performance reports." },
+            feature1_1: { ar: "استراتيجيات محتوى مخصصة", en: "Custom Content Strategies" },
+            feature1_2: { ar: "تصاميم احترافية وجذابة", en: "Professional & Engaging Designs" },
+            feature1_3: { ar: "زيادة التفاعل والمتابعين", en: "Increased Engagement & Followers" },
+            service2Title: { ar: "توثيق الحسابات (العلامة الزرقاء)", en: "Account Verification (Blue Badge)" },
+            service2Desc: { ar: "نساعدك في توثيق حساباتك على فيسبوك، إنستجرام، وتيك توك بخطوات احترافية وآمنة.", en: "We help you verify your accounts on Facebook, Instagram, and TikTok with professional and secure steps." },
+            service2DescDetail: { ar: "نوفر لك الدعم الكامل لتقديم طلبات التوثيق ومتابعتها، مع تجهيز الملفات المطلوبة لزيادة فرص قبول طلبك والحصول على العلامة الزرقاء التي تعزز مصداقيتك.", en: "We provide full support for submitting and following up on verification requests, preparing the required files to increase the chances of your application's approval and obtaining the blue badge that enhances your credibility." },
+            feature2_1: { ar: "زيادة المصداقية والثقة", en: "Increased Credibility & Trust" },
+            feature2_2: { ar: "حماية من انتحال الشخصية", en: "Protection from Impersonation" },
+            feature2_3: { ar: "دعم احترافي للطلب", en: "Professional Application Support" },
+            service3Title: { ar: "إنتاج الفيديوهات والبودكاست", en: "Video & Podcast Production" },
+            service3Desc: { ar: "نحوّل أفكارك لمحتوى بصري أو صوتي احترافي: سكريبت، تصوير، مونتاج، ونشر.", en: "We turn your ideas into professional visual or audio content: script, filming, editing, and publishing." },
+            service3DescDetail: { ar: "من الفكرة إلى النشر، نقدم خدمة إنتاج متكاملة تشمل كتابة السيناريو، التصوير الاحترافي، المونتاج المتقدم، وإضافة المؤثرات البصرية والصوتية لإنشاء فيديوهات وبودكاست عالية الجودة.", en: "From idea to publication, we offer a complete production service including scriptwriting, professional filming, advanced editing, and adding visual and sound effects to create high-quality videos and podcasts." },
+            feature3_1: { ar: "جودة إنتاج عالية (4K)", en: "High Production Quality (4K)" },
+            feature3_2: { ar: "مونتاج إبداعي وجذاب", en: "Creative & Engaging Editing" },
+            feature3_3: { ar: "توزيع على المنصات المناسبة", en: "Distribution on Suitable Platforms" },
+            service4Title: { ar: "إدارة المؤثرين", en: "Influencer Management" },
+            service4Desc: { ar: "نوصل علامتك التجارية بالمؤثرين المناسبين وننفذ الحملة بشكل احترافي ومدروس.", en: "We connect your brand with the right influencers and execute campaigns professionally and strategically." },
+            service4DescDetail: { ar: "ندير حملاتك مع المؤثرين من الألف إلى الياء. نقوم بالبحث واختيار المؤثرين الأكثر ملاءمة لعلامتك التجارية، التفاوض على العقود، ومتابعة تنفيذ الحملة وقياس نتائجها لضمان أفضل عائد على الاستثمار.", en: "We manage your influencer campaigns from A to Z. We research and select the most suitable influencers for your brand, negotiate contracts, and monitor campaign execution and measure its results to ensure the best ROI." },
+            feature4_1: { ar: "شبكة واسعة من المؤثرين", en: "Wide Network of Influencers" },
+            feature4_2: { ar: "حملات مخصصة ومدروسة", en: "Customized & Studied Campaigns" },
+            feature4_3: { ar: "تقارير أداء شفافة", en: "Transparent Performance Reports" },
+            service5Title: { ar: "حماية المحتوى", en: "Content Protection" },
+            service5Desc: { ar: "نراقب ونحمي محتواك من السرقة أو الاستخدام غير القانوني ونتعامل مع الانتهاكات بفعالية.", en: "We monitor and protect your content from theft or illegal use and handle violations effectively." },
+            service5DescDetail: { ar: "نستخدم أحدث التقنيات لمراقبة المحتوى الخاص بك عبر الإنترنت. في حالة اكتشاف أي استخدام غير مصرح به، يتخذ فريقنا القانوني الإجراءات اللازمة بسرعة لحذف المحتوى المسروق وحماية حقوق الملكية الفكرية الخاصة بك.", en: "We use the latest technologies to monitor your content online. If any unauthorized use is detected, our legal team takes prompt action to remove the stolen content and protect your intellectual property rights." },
+            feature5_1: { ar: "مراقبة آلية 24/7", en: "24/7 Automated Monitoring" },
+            feature5_2: { ar: "إجراءات قانونية سريعة", en: "Swift Legal Actions" },
+            feature5_3: { ar: "حماية العلامة التجارية", en: "Brand Protection" },
+            service6Title: { ar: "الإعلانات الرقمية الممولة", en: "Paid Digital Advertising" },
+            service6Desc: { ar: "نُطلق حملات إعلانية قوية على فيسبوك، إنستجرام، وجوجل للوصول للجمهور المستهدف.", en: "We launch powerful ad campaigns on Facebook, Instagram, and Google to reach the target audience." },
+            service6DescDetail: { ar: "نصمم ونطلق حملات إعلانية ممولة ومستهدفة بدقة على منصات مثل جوجل، فيسبوك، إنستجرام، وتيك توك. نقوم بتحليل البيانات باستمرار لتحسين أداء الإعلانات وتحقيق أفضل النتائج بأقل تكلفة ممكنة.", en: "We design and launch precisely targeted paid advertising campaigns on platforms like Google, Facebook, Instagram, and TikTok. We continuously analyze data to optimize ad performance and achieve the best results at the lowest possible cost." },
+            feature6_1: { ar: "استهداف دقيق للجمهور", en: "Precise Audience Targeting" },
+            feature6_2: { ar: "تحسين مستمر للحملات", en: "Continuous Campaign Optimization" },
+            feature6_3: { ar: "تقارير مفصلة للعائد", en: "Detailed ROI Reports" },
+            service7Title: { ar: "تصميم وتطوير المواقع", en: "Website Design & Development" },
+            service7Desc: { ar: "نصمّم موقعًا سريعًا، آمنًا، ومتجاوبًا مع كل الأجهزة، وبتجربة مستخدم رائعة.", en: "We design a fast, secure, and responsive website for all devices with a great user experience." },
+            service7DescDetail: { ar: "نحن نبني مواقع إلكترونية احترافية تعكس هوية علامتك التجارية. نركز على التصميم الجذاب، تجربة المستخدم السلسة، الأداء السريع، والأمان العالي لضمان أن يكون موقعك أداة فعالة لنمو عملك.", en: "We build professional websites that reflect your brand identity. We focus on attractive design, seamless user experience, fast performance, and high security to ensure your website is an effective tool for your business growth." },
+            feature7_1: { ar: "تصميم مخصص وفريد", en: "Custom & Unique Design" },
+            feature7_2: { ar: "متوافق مع جميع الأجهزة", en: "Compatible with All Devices" },
+            feature7_3: { ar: "أداء عالي وسريع", en: "High & Fast Performance" },
+            service8Title: { ar: "تحسين محركات البحث (SEO)", en: "Search Engine Optimization (SEO)" },
+            service8Desc: { ar: "نُظهر موقعك في النتائج الأولى على جوجل عبر تحسين المحتوى، السرعة، والبنية التقنية.", en: "We get your site to the top of Google results by optimizing content, speed, and technical structure." },
+            service8DescDetail: { ar: "خدمتنا في تحسين محركات البحث تشمل تحليلًا شاملاً للموقع، بحثًا عن الكلمات المفتاحية، تحسين المحتوى والبنية التقنية للموقع، وبناء روابط خلفية عالية الجودة لرفع ترتيبك في نتائج بحث جوجل بشكل مستدام.", en: "Our SEO service includes a comprehensive site analysis, keyword research, content and technical structure optimization, and building high-quality backlinks to sustainably raise your ranking in Google search results." },
+            feature8_1: { ar: "زيادة الزيارات العضوية", en: "Increase Organic Traffic" },
+            feature8_2: { ar: "تحسين السمعة الرقمية", en: "Improve Digital Reputation" },
+            feature8_3: { ar: "استراتيجيات طويلة الأمد", en: "Long-term Strategies" },
+            service9Title: { ar: "إدارة المواقع", en: "Website Management" },
+            service9Desc: { ar: "نهتم بكل ما يخص موقعك: التحديثات، النسخ الاحتياطي، الأمان، وتحسين الأداء بشكل دوري.", en: "We take care of everything for your site: updates, backups, security, and regular performance optimization." },
+            service9DescDetail: { ar: "دعنا نهتم بالجانب التقني لموقعك. تشمل خدمتنا التحديثات الدورية للنظام والإضافات، النسخ الاحتياطي المنتظم، مراقبة الأمان على مدار الساعة، وتحسين سرعة الموقع لضمان عمله بكفاءة دائمة.", en: "Let us handle the technical side of your website. Our service includes regular system and plugin updates, regular backups, 24/7 security monitoring, and site speed optimization to ensure it always runs efficiently." },
+            feature9_1: { ar: "تحديثات وأمان مستمر", en: "Continuous Updates & Security" },
+            feature9_2: { ar: "نسخ احتياطي آمن", en: "Secure Backups" },
+            feature9_3: { ar: "دعم فني سريع", en: "Fast Technical Support" },
+            whyUsTitle: { ar: "لماذا تختارنا؟", en: "Why Choose Us?" },
+            whyUs1Title: { ar: "حلول متكاملة", en: "Integrated Solutions" },
+            whyUs1Desc: { ar: "نقدم كل ما تحتاجه علامتك التجارية للنجاح الرقمي في مكان واحد.", en: "We provide everything your brand needs for digital success in one place." },
+            whyUs2Title: { ar: "فريق من الخبراء", en: "Expert Team" },
+            whyUs2Desc: { ar: "فريقنا يمتلك الخبرة والإبداع لتحقيق أهدافك بكفاءة عالية.", en: "Our team has the experience and creativity to achieve your goals efficiently." },
+            whyUs3Title: { ar: "نتائج مضمونة", en: "Guaranteed Results" },
+            whyUs3Desc: { ar: "نركز على تحقيق نتائج ملموسة تساهم في نمو عملك.", en: "We focus on delivering tangible results that contribute to your business growth." },
+            portfolioTitle: { ar: "أعمالنا", en: "Our Work" },
+            viewProject: { ar: "عرض المشروع", en: "View Project" },
+            addProject: { ar: "إضافة مشروع جديد", en: "Add New Project" },
+            processTitle: { ar: "آلية عملنا", en: "Our Process" },
+            process1Title: { ar: "01. الاكتشاف والاستراتيجية", en: "01. Discovery & Strategy" },
+            process1Desc: { ar: "نبدأ بفهم أهدافك وجمهورك لوضع خطة عمل واضحة وفعالة.", en: "We start by understanding your goals and audience to develop a clear and effective action plan." },
+            process2Title: { ar: "02. التصميم والتطوير", en: "02. Design & Development" },
+            process2Desc: { ar: "يقوم فريقنا بتصميم وتنفيذ الحلول الرقمية بناءً على الاستراتيجية المتفق عليها.", en: "Our team designs and implements digital solutions based on the agreed-upon strategy." },
+            process3Title: { ar: "03. الإطلاق والتسويق", en: "03. Launch & Marketing" },
+            process3Desc: { ar: "نطلق مشروعك ونبدأ في تنفيذ الحملات التسويقية لضمان وصوله للجمهور.", en: "We launch your project and start marketing campaigns to ensure it reaches the audience." },
+            process4Title: { ar: "04. الدعم والنمو", en: "04. Support & Growth" },
+            process4Desc: { ar: "نقدم الدعم المستمر ونحلل النتائج لتحسين الأداء وتحقيق النمو المستدام.", en: "We provide ongoing support and analyze results to improve performance and achieve sustainable growth." },
+            aboutTitle: { ar: "من نحن؟", en: "About Us" },
+            aboutDesc1: { ar: "أنا عمر فتحي، خبير رقمي متعدد المواهب شغوف بتحويل الأفكار إلى قصص نجاح. أجمع بين الخبرة التقنية في تطوير المواقع والتطبيقات، والإبداع في التصميم الجرافيكي، والاستراتيجية في التسويق الرقمي ونمو الحسابات على وسائل التواصل الاجتماعي.", en: "I'm Omar Fathy, a multi-talented digital expert passionate about turning ideas into success stories. I combine technical expertise in web and app development, creativity in graphic design, and strategy in digital marketing and social media growth." },
+            aboutDesc2: { ar: "هدفي هو تقديم حلول متكاملة تبدأ من الفكرة وتنتهي بالنجاح الملموس، مع التركيز على بناء علاقات قوية مع عملائي وتحقيق نتائج تفوق توقعاتهم.", en: "My goal is to provide integrated solutions from idea to tangible success, focusing on building strong client relationships and delivering results that exceed expectations." },
+            contactTitle: { ar: "لنتحدث!", en: "Let's Talk!" },
+            contactSubtitle: { ar: "هل لديك فكرة مشروع؟ أو ترغب في التعاون؟ لا تتردد في التواصل معنا.", en: "Have a project idea? Or want to collaborate? Feel free to contact us." },
+            footerText: { ar: "&copy; 2024 عمر فتحي. جميع الحقوق محفوظة.", en: "&copy; 2024 Omar Fathy. All Rights Reserved." },
+            backToServices: { ar: "العودة للخدمات", en: "Back to Services" },
+            serviceFeatures: { ar: "مميزات الخدمة", en: "Service Features" },
+            requestService: { ar: "اطلب هذه الخدمة الآن", en: "Request This Service" },
+            whatYouGet: { ar: "ماذا ستحصل عليه؟", en: "What You Will Get" },
+            whoIsThisFor: { ar: "لمن هذه الخدمة؟", en: "Who Is This For?" },
+            'page-service1target1': { ar: 'الشركات والعلامات التجارية', en: 'Businesses & Brands' },
+            'page-service1target2': { ar: 'الشخصيات العامة والمؤثرين', en: 'Public Figures & Influencers' },
+            'page-service1target3': { ar: 'المتاجر الإلكترونية', en: 'E-commerce Stores' },
+            'page-service2target1': { ar: 'المشاهير والشخصيات العامة', en: 'Celebrities & Public Figures' },
+            'page-service2target2': { ar: 'العلامات التجارية الكبرى', en: 'Major Brands' },
+            'page-service2target3': { ar: 'المؤسسات الإعلامية', en: 'Media Organizations' },
+            'page-service3target1': { ar: 'صناع المحتوى واليوتيوبرز', en: 'Content Creators & YouTubers' },
+            'page-service3target2': { ar: 'الشركات التي تحتاج محتوى تسويقي', en: 'Companies Needing Marketing Content' },
+            'page-service3target3': { ar: 'مقدمو البودكاست', en: 'Podcasters' },
+            'page-service4target1': { ar: 'العلامات التجارية التي تبحث عن انتشار', en: 'Brands Seeking Reach' },
+            'page-service4target2': { ar: 'الشركات الناشئة', en: 'Startups' },
+            'page-service4target3': { ar: 'المتاجر الإلكترونية', en: 'E-commerce Stores' },
+            'page-service5target1': { ar: 'صناع المحتوى الأصلي', en: 'Original Content Creators' },
+            'page-service5target2': { ar: 'المصورون والفنانون', en: 'Photographers & Artists' },
+            'page-service5target3': { ar: 'الشركات التي تملك حقوق ملكية', en: 'Companies with Intellectual Property' },
+            'page-service6target1': { ar: 'الشركات التي ترغب في زيادة المبيعات', en: 'Businesses Wanting to Increase Sales' },
+            'page-service6target2': { ar: 'المتاجر الإلكترونية', en: 'E-commerce Stores' },
+            'page-service6target3': { ar: 'مروجو الفعاليات والتطبيقات', en: 'Event & App Promoters' },
+            'page-service7target1': { ar: 'الشركات والمؤسسات', en: 'Companies & Organizations' },
+            'page-service7target2': { ar: 'أصحاب المشاريع الصغيرة والمتوسطة', en: 'Small & Medium Enterprises' },
+            'page-service7target3': { ar: 'الأفراد الذين يحتاجون معرض أعمال', en: 'Individuals Needing a Portfolio' },
+            'page-service8target1': { ar: 'أصحاب المواقع الإلكترونية', en: 'Website Owners' },
+            'page-service8target2': { ar: 'المتاجر الإلكترونية', en: 'E-commerce Stores' },
+            'page-service8target3': { ar: 'الشركات التي تعتمد على البحث المحلي', en: 'Businesses Relying on Local Search' },
+            'page-service9target1': { ar: 'أصحاب الأعمال المشغولين', en: 'Busy Business Owners' },
+            'page-service9target2': { ar: 'الشركات التي ليس لديها فريق تقني', en: 'Companies Without a Tech Team' },
+            'page-service9target3': { ar: 'أي شخص يريد موقعًا آمنًا ومحدثًا', en: 'Anyone Wanting a Secure, Updated Site' },
+        };
 
-        // Typed.js Animation for Hero Section
-        const typed = new Typed('#typed-text', {
-            strings: [
-                'مصمم ومطور واجهات أمامية',
-                'متخصص في تصميمات السوشيال ميديا',
-                'خبير في تحسين محركات البحث (SEO)',
-                'مبدع في استخدام Canva و Photoshop'
-            ],
-            typeSpeed: 70,
-            backSpeed: 35,
-            backDelay: 2000,
-            startDelay: 500,
-            loop: true,
-            showCursor: true,
-            cursorChar: '|',
-        });
+        const langToggle = document.getElementById('lang-toggle');
+        const langToggleMobile = document.getElementById('lang-toggle-mobile');
+        
+        const setLanguage = (lang) => {
+            document.documentElement.lang = lang;
+            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+            document.querySelectorAll('[data-translate]').forEach(el => {
+                const key = el.dataset.translate;
+                if (translations[key] && translations[key][lang]) {
+                    el.innerHTML = translations[key][lang];
+                }
+            });
+            langToggle.textContent = lang === 'ar' ? 'English' : 'العربية';
+            langToggleMobile.textContent = lang === 'ar' ? 'English' : 'العربية';
+            const desktopNav = document.getElementById('desktop-nav-links');
+            const socialIcons = document.getElementById('social-icons');
+            const contactIcons = document.querySelectorAll('.icon-margin');
+            if (lang === 'ar') {
+                desktopNav.classList.add('space-x-reverse');
+                socialIcons.classList.add('space-x-reverse');
+                contactIcons.forEach(icon => { icon.classList.remove('mr-3'); icon.classList.add('ml-3'); });
+            } else {
+                desktopNav.classList.remove('space-x-reverse');
+                socialIcons.classList.remove('space-x-reverse');
+                contactIcons.forEach(icon => { icon.classList.remove('ml-3'); icon.classList.add('mr-3'); });
+            }
+            localStorage.setItem('language', lang);
+        };
 
-        // Typed.js Animation for Code Snippet
-        const codeSnippet = `
-<span style="color: #c586c0;">class</span> <span style="color: #4ec9b0;">Developer</span> {
-  <span style="color: #dcdcaa;">constructor</span>(<span style="color: #9cdcfe;">name</span>) {
-    <span style="color: #569cd6;">this</span>.name = name;
-    <span style="color: #569cd6;">this</span>.passion = <span style="color: #ce9178;">'Creating digital solutions'</span>;
-  }
+        const toggleLanguage = () => {
+            const currentLang = localStorage.getItem('language') || 'ar';
+            const newLang = currentLang === 'ar' ? 'en' : 'ar';
+            setLanguage(newLang);
+        };
 
-  <span style="color: #dcdcaa;">create</span>(<span style="color: #9cdcfe;">idea</span>) {
-    <span style="color: #c586c0;">const</span> product = <span style="color: #4fc1ff;">buildWith</span>(
-      idea,
-      <span style="color: #ce9178;">'HTML'</span>,
-      <span style="color: #ce9178;">'CSS'</span>,
-      <span style="color: #ce9178;">'JavaScript'</span>
-    );
-    <span style="color: #c586c0;">return</span> <span style="color: #4fc1ff;">launch</span>(product);
-  }
-}
+        langToggle.addEventListener('click', toggleLanguage);
+        langToggleMobile.addEventListener('click', toggleLanguage);
 
-<span style="color: #c586c0;">const</span> omar = <span style="color: #c586c0;">new</span> <span style="color: #4ec9b0;">Developer</span>(<span style="color: #ce9178;">'Omar Fathy'</span>);
-omar.<span style="color: #dcdcaa;">create</span>(<span style="color: #ce9178;">'Your Next Big Idea'</span>);`;
+        function createServicePages() {
+            const container = document.getElementById('service-pages-container');
+            if (!container) return;
+            container.innerHTML = '';
+            const servicesData = [
+                { id: 'page-service1', icon: 'ph-share-network', titleKey: 'service1Title', detailKey: 'service1DescDetail', features: ['feature1_1', 'feature1_2', 'feature1_3'], targets: ['page-service1target1', 'page-service1target2', 'page-service1target3'], image: 'images/social-media-management-icon.webp' },
+                { id: 'page-service2', icon: 'ph-seal-check', titleKey: 'service2Title', detailKey: 'service2DescDetail', features: ['feature2_1', 'feature2_2', 'feature2_3'], targets: ['page-service2target1', 'page-service2target2', 'page-service2target3'], image: 'images/account-verification-icon.webp' },
+                { id: 'page-service3', icon: 'ph-video-camera', titleKey: 'service3Title', detailKey: 'service3DescDetail', features: ['feature3_1', 'feature3_2', 'feature3_3'], targets: ['page-service3target1', 'page-service3target2', 'page-service3target3'], image: 'images/video-podcast-production-icon.webp' },
+                { id: 'page-service4', icon: 'ph-users-three', titleKey: 'service4Title', detailKey: 'service4DescDetail', features: ['feature4_1', 'feature4_2', 'feature4_3'], targets: ['page-service4target1', 'page-service4target2', 'page-service4target3'], image: 'images/influencer-marketing-icon.webp' },
+                { id: 'page-service5', icon: 'ph-shield-check', titleKey: 'service5Title', detailKey: 'service5DescDetail', features: ['feature5_1', 'feature5_2', 'feature5_3'], targets: ['page-service5target1', 'page-service5target2', 'page-service5target3'], image: 'images/content-protection-icon.webp' },
+                { id: 'page-service6', icon: 'ph-megaphone', titleKey: 'service6Title', detailKey: 'service6DescDetail', features: ['feature6_1', 'feature6_2', 'feature6_3'], targets: ['page-service6target1', 'page-service6target2', 'page-service6target3'], image: 'images/paid-digital-ads-icon.webp' },
+                { id: 'page-service7', icon: 'ph-code', titleKey: 'service7Title', detailKey: 'service7DescDetail', features: ['feature7_1', 'feature7_2', 'feature7_3'], targets: ['page-service7target1', 'page-service7target2', 'page-service7target3'], image: 'images/website-design-development-icon.webp' },
+                { id: 'page-service8', icon: 'ph-chart-line-up', titleKey: 'service8Title', detailKey: 'service8DescDetail', features: ['feature8_1', 'feature8_2', 'feature8_3'], targets: ['page-service8target1', 'page-service8target2', 'page-service8target3'], image: 'images/seo-icon.webp' },
+                { id: 'page-service9', icon: 'ph-gear-six', titleKey: 'service9Title', detailKey: 'service9DescDetail', features: ['feature9_1', 'feature9_2', 'feature9_3'], targets: ['page-service9target1', 'page-service9target2', 'page-service9target3'], image: 'images/graphic-design-icon.webp' }
+            ];
+            servicesData.forEach(service => {
+                const page = document.createElement('section');
+                page.id = service.id;
+                page.className = 'service-page page-hidden';
+                const placeholderText = service.titleKey.replace('service','').replace('Title','');
+                const placeholderUrl = `https://placehold.co/1920x400/111827/38bdf8?text=${placeholderText.replace(/([A-Z])/g, ' $1').trim()}`;
+                page.innerHTML = `
+                    <div class="h-80 bg-cover bg-center flex items-center justify-center" style="background-image: linear-gradient(rgba(17, 24, 39, 0.7), rgba(17, 24, 39, 0.9)), url('${service.image}')" 
+                         onerror="this.style.backgroundImage='linear-gradient(rgba(17, 24, 39, 0.7), rgba(17, 24, 39, 0.9)), url(${placeholderUrl})'">
+                        <div class="text-center" data-aos="zoom-in">
+                            <div class="bg-sky-500/20 text-sky-400 rounded-full w-24 h-24 flex items-center justify-center mx-auto mb-6"><i class="ph-fill ${service.icon} text-5xl"></i></div>
+                            <h2 class="text-4xl md:text-5xl font-bold text-white" data-translate="${service.titleKey}"></h2>
+                        </div>
+                    </div>
+                    <div class="py-20">
+                        <div class="container mx-auto px-6">
+                            <div class="text-center">
+                                <button onclick="showMainPage('services')" class="mb-12 bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-5 rounded-lg transition-all duration-300">
+                                    <i class="ph ph-arrow-left icon-margin"></i> <span data-translate="backToServices"></span>
+                                </button>
+                            </div>
+                             <div class="lg:flex lg:items-start lg:gap-12">
+                                <!-- Main Content -->
+                                <div class="lg:w-2/3">
+                                    <p class="text-lg text-gray-300 mb-12 max-w-3xl mx-auto lg:mx-0 text-center lg:text-start" data-aos="fade-right" data-aos-delay="100" data-translate="${service.detailKey}"></p>
+                                    <h3 class="text-3xl font-bold text-sky-400 mb-8 text-center lg:text-start" data-aos="fade-right" data-aos-delay="200" data-translate="whatYouGet"></h3>
+                                    <div class="space-y-4 mb-12">
+                                        <div class="glass-card p-6 rounded-lg flex items-center" data-aos="fade-right" data-aos-delay="300"><i class="ph-fill ph-check-circle text-sky-400 icon-margin text-2xl"></i> <span data-translate="${service.features[0]}"></span></div>
+                                        <div class="glass-card p-6 rounded-lg flex items-center" data-aos="fade-right" data-aos-delay="400"><i class="ph-fill ph-check-circle text-sky-400 icon-margin text-2xl"></i> <span data-translate="${service.features[1]}"></span></div>
+                                        <div class="glass-card p-6 rounded-lg flex items-center" data-aos="fade-right" data-aos-delay="500"><i class="ph-fill ph-check-circle text-sky-400 icon-margin text-2xl"></i> <span data-translate="${service.features[2]}"></span></div>
+                                    </div>
+                                </div>
+                                <!-- Sidebar -->
+                                <div class="lg:w-1/3 space-y-8 mt-12 lg:mt-0">
+                                     <div class="glass-card p-6 rounded-lg" data-aos="fade-left" data-aos-delay="300">
+                                        <h3 class="text-2xl font-bold text-sky-400 mb-4" data-translate="whoIsThisFor"></h3>
+                                        <ul class="space-y-2 text-gray-300">
+                                            <li class="flex items-start"><i class="ph-fill ph-user-circle-check icon-margin text-sky-500 mt-1 text-xl"></i> <span data-translate="${service.targets[0]}"></span></li>
+                                            <li class="flex items-start"><i class="ph-fill ph-user-circle-check icon-margin text-sky-500 mt-1 text-xl"></i> <span data-translate="${service.targets[1]}"></span></li>
+                                            <li class="flex items-start"><i class="ph-fill ph-user-circle-check icon-margin text-sky-500 mt-1 text-xl"></i> <span data-translate="${service.targets[2]}"></span></li>
+                                        </ul>
+                                    </div>
+                                    <div class="text-center" data-aos="fade-left" data-aos-delay="400">
+                                        <a href="#contact" onclick="showMainPage('contact')" class="w-full block bg-sky-500 hover:bg-sky-600 text-white font-bold py-3 px-8 rounded-lg text-lg" data-translate="requestService"></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(page);
+            });
+        }
 
-        // Use Intersection Observer to trigger the code typing animation only when visible
-        const codeSection = document.querySelector('#code-philosophy');
-        let codeTypedAnimation;
+        const mainContent = document.getElementById('main-content');
+        const servicePagesContainer = document.getElementById('service-pages-container');
+        const footer = document.getElementById('footer');
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting && !codeTypedAnimation) {
-                    codeTypedAnimation = new Typed('#code-snippet', {
-                        strings: [codeSnippet.trim()],
-                        typeSpeed: 25,
-                        loop: false,
-                        showCursor: true,
-                        cursorChar: '_',
-                        contentType: 'html',
+        function showPage(pageId) {
+            mainContent.classList.add('fade-out');
+            setTimeout(() => {
+                mainContent.classList.add('page-hidden');
+                footer.classList.add('page-hidden');
+                servicePagesContainer.classList.remove('page-hidden');
+                servicePagesContainer.classList.remove('fade-out');
+                
+                document.querySelectorAll('.service-page').forEach(page => { page.classList.add('page-hidden'); });
+                const activePage = document.getElementById(pageId);
+                if (activePage) activePage.classList.remove('page-hidden');
+                
+                window.scrollTo(0, 0);
+                AOS.refresh();
+            }, 300);
+        }
+
+        function showMainPage(sectionId = null) {
+            servicePagesContainer.classList.add('fade-out');
+            setTimeout(() => {
+                mainContent.classList.remove('page-hidden');
+                footer.classList.remove('page-hidden');
+                servicePagesContainer.classList.add('page-hidden');
+                mainContent.classList.remove('fade-out');
+                
+                if (sectionId) {
+                    document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+                AOS.refresh();
+            }, 300);
+        }
+
+        function closeMobileMenu() {
+            document.getElementById('mobile-menu').classList.add('hidden');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            createServicePages();
+            const initialLang = localStorage.getItem('language') || 'en';
+            setLanguage(initialLang);
+            
+            particlesJS('particles-js', { particles: { number: { value: 80 }, color: { value: "#38bdf8" }, shape: { type: "circle" }, opacity: { value: 0.5 }, size: { value: 3 }, line_linked: { enable: true, distance: 150, color: "#4a5568", opacity: 0.4 }, move: { enable: true, speed: 4 } }, interactivity: { events: { onhover: { enable: true, mode: "repulse" }, onclick: { enable: true, mode: "push" } } } });
+            AOS.init({ duration: 800, once: false });
+
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+            
+            const sections = document.querySelectorAll('#main-content main section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            window.addEventListener('scroll', () => {
+                if(!mainContent.classList.contains('page-hidden')) {
+                    let current = 'hero';
+                    sections.forEach(section => {
+                        if (pageYOffset >= section.offsetTop - 75) { current = section.getAttribute('id'); }
+                    });
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        const linkHref = link.getAttribute('href');
+                        if (linkHref && linkHref.includes(current)) { link.classList.add('active'); }
                     });
                 }
             });
-        }, { threshold: 0.5 }); // Trigger when 50% of the section is visible
 
-        observer.observe(codeSection);
-
-
-        // Mobile Menu Toggle
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-
-        // Close mobile menu when a link is clicked
-        const mobileLinks = document.querySelectorAll('#mobile-menu a');
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-            });
-        });
-
-        // Active Nav Link on Scroll
-        const sections = document.querySelectorAll('section');
-        const navLinks = document.querySelectorAll('.nav-link');
-
-        window.addEventListener('scroll', () => {
-            let current = 'hero'; // Default to hero
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                if (pageYOffset >= sectionTop - 60) { // 60 is header height
-                    current = section.getAttribute('id');
+            const scrollToTopBtn = document.getElementById("scrollToTopBtn");
+            window.onscroll = () => {
+                if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                    scrollToTopBtn.style.display = "block";
+                } else {
+                    scrollToTopBtn.style.display = "none";
                 }
-            });
-
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href').includes(current)) {
-                    link.classList.add('active');
-                }
-            });
+            };
         });
-
-        // Scroll to top button logic
-        const scrollToTopBtn = document.getElementById("scrollToTopBtn");
         
-        window.onscroll = function() {
-            scrollFunction();
-        };
-
-        function scrollFunction() {
-            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-                scrollToTopBtn.style.display = "block";
-            } else {
-                scrollToTopBtn.style.display = "none";
-            }
-        }
-
-        function scrollToTop() {
-            window.scrollTo({top: 0, behavior: 'smooth'});
-        }
+        function scrollToTop() { window.scrollTo({top: 0, behavior: 'smooth'}); }
     </script>
 </body>
 </html>
